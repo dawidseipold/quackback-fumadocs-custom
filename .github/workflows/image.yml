@@ -1,0 +1,49 @@
+# Builds the image: upstream Quackback (pinned in QUACKBACK_VERSION) with its help center turned
+# into docs on Fumadocs (transform.py: new files from patch/ + checked edits; dependencies.txt:
+# extra npm packages added before the frozen install in Quackback's Dockerfile).
+# Image: ghcr.io/dawidseipold/quackback-fumadocs-custom:latest and :<quackback version>-<sha>
+name: Image
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: portal
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upstream Quackback
+        run: |
+          V=$(cat QUACKBACK_VERSION | tr -d '[:space:]')
+          echo "QB=$V" >> $GITHUB_ENV
+          git clone -q --depth 1 --branch "$V" https://github.com/QuackbackIO/quackback.git upstream
+      - name: Turn the help center into our docs
+        run: python3 transform.py upstream
+      - uses: oven-sh/setup-bun@v2
+      - name: Extra dependencies (Fumadocs), lockfile updated for the frozen install in the Dockerfile
+        working-directory: upstream/apps/web
+        run: bun add $(cat ../../../dependencies.txt)
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: upstream
+          file: upstream/apps/web/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/dawidseipold/quackback-fumadocs-custom:latest
+            ghcr.io/dawidseipold/quackback-fumadocs-custom:${{ env.QB }}-${{ github.sha }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
