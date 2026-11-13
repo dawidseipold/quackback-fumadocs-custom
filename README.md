@@ -48,6 +48,18 @@ account). A page can move its own panel into the sidebar with `<SidebarSlot fall
 feedback filters and the settings menu do). Pages slide in from the side of the link that opened them
 (`page-transition.tsx`, framer-motion). Team members get `/design-system` with every token and component.
 
+## Behaviour changes
+
+- Only signed-in users can post ideas and vote; ideas can be voted down (a downvote takes a point off the score).
+- No "Powered by" badge; `/about` lists the technologies and links to the source.
+- No launch plan in the admin.
+
+## UI audit
+
+`python3 tools/ui-audit.py [/page,/page]` (Playwright + Chrome, a running portal with the demo seed) signs in,
+screenshots every page into `/tmp/audit` and lists controls whose corners fall outside the tokens, pill-shaped
+buttons and page errors.
+
 ## How it is built
 
 `transform.py` runs on a checkout of the Quackback release in `QUACKBACK_VERSION`:
