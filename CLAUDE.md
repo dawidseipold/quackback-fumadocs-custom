@@ -17,6 +17,7 @@ accounts and tester ranks for the **Crazy Gothic Trainer**. Built on **Quackback
 
 ## People and process
 
+- **Language with Claude is Polish**: messages to the owner, prompts for new sessions, handoffs and scheduled tasks are written in Polish. Only what lands on GitHub (code, commits, issues, PRs, docs) is in English.
 - The owner (Dawid) is project lead and a frontend developer; he may push quick style fixes himself —
   keep the look, clean up the code.
 - **Talk to him in Polish.** Everything on GitHub is in **English**. Labels use `kind: value`.
