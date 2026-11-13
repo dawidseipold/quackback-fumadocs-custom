@@ -1,7 +1,7 @@
 # quackback-fumadocs-custom
 
 [Quackback](https://github.com/QuackbackIO/quackback) (feedback, roadmap, changelog, support, status)
-with its help center turned into **documentation built on [Fumadocs UI](https://fumadocs.dev)**,
+with its help center turned into **documentation built on [Fumadocs](https://fumadocs.dev)** (`@fumadocs/base-ui`, the layout of fumadocs.dev),
 packaged as a Docker image that drops in for the official one.
 
 ```
