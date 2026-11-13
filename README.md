@@ -42,11 +42,27 @@ ghcr.io/dawidseipold/quackback-fumadocs-custom:latest
 
 ## App shell
 
-Every portal page uses the same Fumadocs frame as the docs (`custom-docs/app-shell.tsx`): sidebar with the
-workspace, search and the portal sections, a panel with one top bar (sections, Admin, notifications,
-account). A page can move its own panel into the sidebar with `<SidebarSlot fallback={...}>` (the
-feedback filters and the settings menu do). Pages slide in from the side of the link that opened them
-(`page-transition.tsx`, framer-motion). Team members get `/design-system` with every token and component.
+Every portal page uses the same Fumadocs frame as the docs (`custom-docs/app-shell.tsx`). The sidebar has a
+fixed part (workspace, search, portal sections, and on docs pages the game and renderer pickers) and a part
+that scrolls (the docs tree and the page's own panel). The top bar holds only notifications and the account
+menu (Admin and Design system for the team, then Settings and Sign out). A page moves its panel into the
+sidebar with `<SidebarSlot fallback={...}>` (feedback filters, roadmap list and filters, settings menu).
+Pages slide in from the side of the link that opened them (`page-transition.tsx`, framer-motion).
+
+- **Games and renderers** are one list (`custom-docs/variants.ts`): the docs pickers, the "coming later" pages,
+  the search tags and the post tags (`game: …`, `renderer: …`) all come from it.
+- **Roadmaps per area** (trainer, docs, Discord, website, testers) are picked in the sidebar; tags with a
+  `kind: value` name are grouped by kind in every filter panel (`custom-docs/tag-groups.ts`).
+- **Light and dark** themes, switched in the sidebar footer.
+
+### Admin
+
+The admin keeps Quackback's layout but reads like the portal: the rail and the side panes use the sidebar's
+rows and its gliding hover (`custom-docs/glide.ts`), pages sit in the middle of wide screens, lists are
+rounded cards (feedback can switch between list and grid), and every list toolbar is one card
+(`components/admin/admin-list-header.tsx`). The portal settings page keeps only what still applies (the
+sidebar links and the welcome text): the site has its own design system. `theme.css` is appended to the end
+of `globals.css` by `transform.py`, so its rules win over Quackback's own.
 
 ## Behaviour changes
 
