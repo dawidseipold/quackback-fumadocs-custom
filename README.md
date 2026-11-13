@@ -40,6 +40,14 @@ ghcr.io/dawidseipold/quackback-fumadocs-custom:latest
 - **API additions**: `position` on help-center articles (sidebar order), `categoryNames` on changelog
   entries, `GET/POST /api/v1/changelog/categories` (create or recolour categories by name).
 
+## App shell
+
+Every portal page uses the same Fumadocs frame as the docs (`custom-docs/app-shell.tsx`): sidebar with the
+workspace, search and the portal sections, a panel with one top bar (sections, Admin, notifications,
+account). A page can move its own panel into the sidebar with `<SidebarSlot fallback={...}>` (the
+feedback filters and the settings menu do). Pages slide in from the side of the link that opened them
+(`page-transition.tsx`, framer-motion). Team members get `/design-system` with every token and component.
+
 ## How it is built
 
 `transform.py` runs on a checkout of the Quackback release in `QUACKBACK_VERSION`:
