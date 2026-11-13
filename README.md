@@ -34,9 +34,11 @@ ghcr.io/dawidseipold/quackback-fumadocs-custom:latest
   | inline `` `key:F1` ``, `` `status:OK` `` | key cap, status badge |
   | any other code block | Shiki highlighting with a copy button |
 
-- **Portal header**: one full-width row, navigation centred, page colours.
+- **One look for the whole app** (`custom-docs/theme.css`): Fumadocs' neutral palette with the purple of
+  fumadocs.dev for the portal, the docs and the admin. Portal pages sit in a rounded panel on a darker
+  frame with the header as its top bar; the docs fill the window with the portal links in their top bar.
 - **API additions**: `position` on help-center articles (sidebar order), `categoryNames` on changelog
-  entries (creates the categories, e.g. `["Docs"]`).
+  entries, `GET/POST /api/v1/changelog/categories` (create or recolour categories by name).
 
 ## How it is built
 
