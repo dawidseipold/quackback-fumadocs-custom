@@ -14,6 +14,27 @@ accounts and tester ranks for the **Crazy Gothic Trainer**. Built on **Quackback
   the layout to reuse and the rules learned there.
 - Our docs (`CLAUDE.md`, `PARITY.md`, `docs/decisions.md`, `docs/kickoff.md`) sit next to Quackback's own
   files in `docs/`; Quackback's `README.md` is replaced by ours.
+- The app skeleton (#3) is in place; every `PARITY.md` row has its issue (#4–#17, labels `phase: 1/2`).
+  Start the next feature from its issue, in the order of the `Order:` line.
+
+## Where the new UI lives
+
+- `apps/web/src/app/` is ours: `root.tsx`, `router.tsx`, `server.ts` (Quackback's entry wrapped in
+  Paraglide's middleware), `routes.ts` (virtual route config), `routes/` (file routes), `components/`,
+  `lib/`, `styles/app.css`. Messages in `apps/web/messages/{en,pl,de,ru}.json` (Paraglide, compiled to
+  `src/app/paraglide`, git-ignored).
+- Quackback's `src/routes` and `src/components` stay untouched and **out of the build**: `routes.ts` mounts
+  only its server routes (`/api/*`, `.well-known`, OAuth, feeds, robots, sitemap). A new upstream server
+  route outside `src/routes/api` must be added there. Old UI files are the reference for parity only.
+- Reuse `src/lib` freely (server functions, `lib/client` hooks and queries, `lib/shared`). The root context
+  has Quackback's shape, and `/admin` keeps its route id and role guard so the admin hooks work.
+- Wiring edits to upstream files are kept to `apps/web/vite.config.ts` (marked `crazy-hub:`),
+  `apps/web/package.json` and `.github/workflows/ci.yml`. The dependency-graph snapshot
+  `apps/web/src/lib/server/policy/dep-graph/GRAPH.md` lists `src/app` too; after an upstream merge,
+  regenerate it with `bunx vitest run apps/web/src/lib/server/policy/dep-graph -u`.
+- Use **bun 1.4.0** (the `packageManager` pin): newer bun installs duplicate `drizzle-orm` copies and the
+  typecheck fails with thousands of false errors. `bun run --cwd apps/web typecheck:app` checks the new app
+  and everything it imports; the full `typecheck` covers the old UI and no longer applies.
 
 ## People and process
 
