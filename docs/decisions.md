@@ -21,3 +21,12 @@ Settled in the planning conversation of 2026-11-13 (owner + Claude). Supersede b
 9. **Feature flow:** idea on the hub → accepted → GitHub issue (spec, link to the post) → one conversation
    per issue → PR closes the issue → post status updates on the hub (webhooks).
 10. **Order:** crazy-ui → crazy-hub → trainer. Hosting of the hub decided at the start of the hub phase.
+11. **Hosting (2026-11-14, proposed at the start of the hub phase; supersede if the owner picks otherwise).**
+    One EU VPS with Docker Compose behind Cloudflare (DNS, TLS, proxy): the hub's image (built in CI,
+    pushed to GHCR, never built on the server) and Postgres with pgvector and pg_cron in a container, on a
+    4 vCPU / 8 GB box (Hetzner CX33 ≈ €9/mo; if CX/CAX can't be ordered, netcup VPS 1000 or Hetzner CPX22,
+    €14–20). Uploads in Cloudflare R2 (free tier covers our size). Backups: provider snapshots plus a nightly
+    `pg_dump -Fc` to R2 with a 30-day retention rule; restore tested once. Outbound email later through a
+    transactional provider (Resend/Postmark), never from the VPS. Rejected: Fly.io (managed Postgres has no
+    pg_cron), Supabase/Neon + VPS (~3× the cost, DB latency), Railway kept as the low-ops fallback
+    (~$15–30/mo, extensions template). Details: `docs/hosting.md`.
