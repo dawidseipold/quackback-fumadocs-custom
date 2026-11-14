@@ -4,12 +4,12 @@ import { LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { signOut } from '@/lib/client/auth-client'
 import { useSessionContext, useUserRole } from '@/lib/client/hooks/use-root-context'
 import { isTeamMember } from '@/lib/shared/roles'
+import { openSignIn } from './auth/auth-dialog'
 import { m } from '../paraglide/messages.js'
 
 /**
- * Top right of the panel: "Sign in" for visitors, the account menu once signed in. The sign-in screen
- * itself is #4; the backend's guards already send visitors to `/?auth=signin&callbackUrl=…`, so the
- * button links there too.
+ * Top right of the panel: "Sign in" for visitors (opens the sign-in dialog on this page, `?auth=signin`),
+ * the account menu once signed in.
  */
 export function AccountMenu() {
   const session = useSessionContext()
@@ -19,7 +19,12 @@ export function AccountMenu() {
 
   if (!user) {
     return (
-      <Button size="sm" variant="outline" nativeButton={false} render={<a href="/?auth=signin" />}>
+      <Button
+        size="sm"
+        variant="outline"
+        nativeButton={false}
+        render={<Link to="." search={openSignIn} />}
+      >
         <LogIn /> {m.sign_in()}
       </Button>
     )

@@ -20,6 +20,7 @@ import { m } from '../paraglide/messages.js'
 import { COMMON, navItemOf, sectionPath } from '../lib/nav'
 import { PRODUCTS, SECTION_META, locate } from '../lib/products'
 import { AccountMenu } from './account-menu'
+import { AuthDialog } from './auth/auth-dialog'
 import { ContextPickers } from './context-pickers'
 import { LanguageMenu } from './language-menu'
 import { ThemeToggle } from './theme-toggle'
@@ -37,6 +38,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         <TopBar />
         <PanelScroller>{children}</PanelScroller>
       </Sidebar.Inset>
+      {/* opens on ?auth=signin|signup from any page */}
+      <AuthDialog />
     </Sidebar.Provider>
   )
 }

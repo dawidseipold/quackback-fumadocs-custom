@@ -179,3 +179,54 @@ jobs:
             ss -lntp || true
             exit 1
           fi
+
+  # crazy-hub: end-to-end tests of the new UI (apps/web/e2e-app) against a dev server with the demo seed
+  e2e-app:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: quackback_test
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      CI: 'true'
+      SECRET_KEY: e2e-app-secret-key-for-ci-only-at-least-32-characters
+      BASE_URL: http://localhost:3000
+      PLAYWRIGHT_BASE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.0
+      - run: bun install --frozen-lockfile
+      - run: bun run --filter @quackback/widget build
+      - run: bun run --cwd apps/web i18n:compile
+      - run: bun run db:migrate
+      - run: bun run db:seed
+      - name: Write runtime environment
+        run: |
+          cat > .env <<EOF
+          DATABASE_URL=$DATABASE_URL
+          SECRET_KEY=$SECRET_KEY
+          BASE_URL=$BASE_URL
+          EOF
+      - name: Install Playwright Chromium
+        working-directory: apps/web
+        run: bunx playwright install --with-deps chromium
+      - name: Start the app and run the e2e tests
+        run: |
+          bun --env-file=.env --cwd apps/web vite dev --host 0.0.0.0 --port 3000 > /tmp/app.log 2>&1 &
+          for attempt in $(seq 1 90); do
+            curl --fail --silent "$BASE_URL/api/health/ready" > /dev/null && break
+            sleep 1
+          done
+          if ! (cd apps/web && bunx playwright test -c playwright.app.config.ts); then
+            echo '===== server log ====='
+            tail -200 /tmp/app.log
+            exit 1
+          fi
