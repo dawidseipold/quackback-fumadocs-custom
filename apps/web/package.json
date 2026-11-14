@@ -15,6 +15,7 @@
     "i18n:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/app/paraglide --strategy cookie preferredLanguage baseLocale --silent",
     "generate:platform-schema": "bun scripts/generate-platform-schema.ts",
     "test:e2e": "playwright test",
+    "test:e2e:app": "playwright test -c playwright.app.config.ts",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "check:widget-bundle": "bun scripts/check-widget-bundle.ts",
