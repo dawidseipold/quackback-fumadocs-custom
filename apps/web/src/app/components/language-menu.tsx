@@ -4,7 +4,12 @@ import { getLocale, locales, setLocale, type Locale } from '../paraglide/runtime
 import { m } from '../paraglide/messages.js'
 
 /** Each language in its own name, so anyone can find theirs. */
-const names: Record<Locale, string> = { en: 'English', pl: 'Polski', de: 'Deutsch', ru: 'Русский' }
+export const LOCALE_NAMES: Record<Locale, string> = {
+  en: 'English',
+  pl: 'Polski',
+  de: 'Deutsch',
+  ru: 'Русский',
+}
 
 /** Picks the UI language (Paraglide: cookie, then the browser's languages, then English). */
 export function LanguageMenu() {
@@ -33,7 +38,7 @@ export function LanguageMenu() {
           >
             {locales.map((locale) => (
               <DropdownMenu.RadioItem key={locale} value={locale} lang={locale}>
-                {names[locale]}
+                {LOCALE_NAMES[locale]}
               </DropdownMenu.RadioItem>
             ))}
           </DropdownMenu.RadioGroup>
