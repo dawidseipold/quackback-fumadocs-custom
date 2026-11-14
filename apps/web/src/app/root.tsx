@@ -51,7 +51,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-      { title: 'Crazy Hub' },
+      { title: 'crazy-hub' },
       {
         name: 'description',
         content: 'Ideas, roadmaps, changelog and docs of the Crazy Gothic Trainer.',

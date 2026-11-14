@@ -15,7 +15,7 @@ accounts and tester ranks for the **Crazy Gothic Trainer**. Built on **Quackback
 - Our docs (`CLAUDE.md`, `PARITY.md`, `docs/decisions.md`, `docs/kickoff.md`, `docs/hosting.md`,
   `docs/owner-data.md`) sit next to Quackback's own
   files in `docs/`; Quackback's `README.md` is replaced by ours.
-- The app skeleton (#3) is in place; every `PARITY.md` row has its issue (#4–#17, labels `phase: 1/2`).
+- The app skeleton (#3) is in place; every `PARITY.md` row has its issue (#4–#17 and #19, labels `phase: 1/2`).
   Start the next feature from its issue, in the order of the `Order:` line.
 
 ## Where the new UI lives

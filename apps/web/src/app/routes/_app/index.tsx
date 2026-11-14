@@ -6,7 +6,7 @@ import { ComingSoon } from '../../components/coming-soon'
 import { issues } from '../../lib/issues'
 
 export const Route = createFileRoute('/_app/')({
-  head: () => ({ meta: [{ title: `${m.nav_ideas()} · Crazy Hub` }] }),
+  head: () => ({ meta: [{ title: `${m.nav_ideas()} · crazy-hub` }] }),
   component: () => (
     <Page title={m.nav_ideas()} description={m.page_ideas_description()}>
       <ComingSoon icon={Lightbulb} issue={issues.feedback} />

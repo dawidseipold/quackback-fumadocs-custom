@@ -9,11 +9,9 @@
   "nav_ideas": "Ideas",
   "nav_roadmap": "Roadmap",
   "nav_changelog": "Changelog",
-  "nav_trainer": "Trainer",
   "nav_docs": "Docs",
   "nav_admin": "Admin",
   "sidebar_collapse": "Collapse sidebar",
-  "brand_tagline": "Crazy Gothic Trainer",
   "sign_in": "Sign in",
   "sign_out": "Sign out",
   "account_menu": "Account menu",
@@ -32,5 +30,13 @@
   "page_admin_description": "Ideas, roadmaps, changelog, docs, users and settings.",
   "portal_private_title": "This portal is private",
   "portal_private_signed_out": "Sign in to see the ideas, roadmaps and docs.",
-  "portal_private_no_access": "Your account doesn't have access to this portal. Ask the team to invite you."
+  "portal_private_no_access": "Your account doesn't have access to this portal. Ask the team to invite you.",
+  "nav_product": "Product",
+  "nav_downloads": "Downloads",
+  "page_downloads_description": "Builds for your game and renderer, with install notes.",
+  "context_product": "Product",
+  "context_game": "Game",
+  "context_renderer": "Renderer",
+  "status_planned": "Planned",
+  "status_later": "Later"
 }

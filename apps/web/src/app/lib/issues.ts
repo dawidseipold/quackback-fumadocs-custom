@@ -4,5 +4,6 @@ export const issues = {
   roadmaps: 7,
   changelog: 9,
   docs: 14,
+  downloads: 19,
   adminInbox: 6,
 } as const

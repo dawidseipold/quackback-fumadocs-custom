@@ -7,10 +7,11 @@
 import { ProgressiveBlur, Sidebar, cn } from '@crazy-staff/ui'
 import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { useWorkspaceSettings } from '@/lib/client/hooks/use-root-context'
 import { m } from '../paraglide/messages.js'
 import { nav, navItemOf } from '../lib/nav'
+import { choiceOf, useHubContext } from '../lib/context'
 import { AccountMenu } from './account-menu'
+import { ContextPickers } from './context-pickers'
 import { LanguageMenu } from './language-menu'
 import { ThemeToggle } from './theme-toggle'
 
@@ -31,37 +32,38 @@ export function AppShell({ children }: { children: ReactNode }) {
   )
 }
 
+/** The name of the whole hub, not of one product: crazy-hub carries the trainer and what comes next. */
 function Brand() {
-  const settings = useWorkspaceSettings()
-  const name = settings?.name || 'Crazy Hub'
   return (
     <Link
       to="/"
-      className="me-auto inline-flex min-w-0 items-center gap-2.5 rounded-control-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="me-auto inline-flex min-w-0 items-center gap-2.5 rounded-control-sm text-[0.9375rem] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <span className="squircle flex size-7 shrink-0 items-center justify-center rounded-chip bg-accent text-xs font-bold text-accent-foreground">
         C
       </span>
-      <span className="flex min-w-0 flex-col leading-tight">
-        <span className="truncate text-[0.9375rem] font-semibold">{name}</span>
-        <span className="truncate text-[0.6875rem] text-muted">{m.brand_tagline()}</span>
-      </span>
+      <span className="truncate">crazy-hub</span>
     </Link>
   )
 }
 
+/** The sidebar's own buttons look like the crazy-ui docs: 32px, 16px icon, their own hover. */
+const iconButton = 'size-8 rounded-control-sm [&_svg]:size-4'
+
 function AppSidebar() {
   const pathname = useLocation({ select: (l) => l.pathname })
   const active = navItemOf(pathname)
+  const product = choiceOf('product', useHubContext().product)
   return (
     <Sidebar label={m.nav_label()}>
-      <Sidebar.Header className="h-16 pt-2">
+      {/* the header and the pickers keep their own hover: the gliding block is for the nav rows only */}
+      <Sidebar.Header data-no-glide-area="" className="my-2 h-14 py-0 ps-4 pe-3">
         <Brand />
-        <Sidebar.Trigger aria-label={m.sidebar_collapse()} />
+        <Sidebar.Trigger aria-label={m.sidebar_collapse()} className={iconButton} />
       </Sidebar.Header>
       <Sidebar.Content>
         {nav.map((group) => (
-          <Sidebar.Group key={group.label()} label={group.label()}>
+          <Sidebar.Group key={group.label()} label={group.product ? product.title : group.label()}>
             {group.items.map((item) => (
               <Sidebar.Item
                 key={item.to}
@@ -75,6 +77,9 @@ function AppSidebar() {
           </Sidebar.Group>
         ))}
       </Sidebar.Content>
+      <Sidebar.Footer data-no-glide-area="">
+        <ContextPickers />
+      </Sidebar.Footer>
     </Sidebar>
   )
 }
@@ -84,7 +89,7 @@ function TopBar() {
   return (
     <header className="pointer-events-none absolute inset-x-0 top-0 z-10 flex h-14 items-center gap-1 px-3 md:px-4">
       <div className="pointer-events-auto flex items-center">
-        <Sidebar.Trigger className="in-data-[sidebar=open]:md:hidden" />
+        <Sidebar.Trigger className={cn(iconButton, 'in-data-[sidebar=open]:md:hidden')} />
       </div>
       <div className="pointer-events-auto ms-auto flex items-center gap-1">
         <LanguageMenu />

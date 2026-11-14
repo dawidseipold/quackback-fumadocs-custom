@@ -9,11 +9,9 @@
   "nav_ideas": "Pomysły",
   "nav_roadmap": "Plan prac",
   "nav_changelog": "Lista zmian",
-  "nav_trainer": "Trainer",
   "nav_docs": "Dokumentacja",
   "nav_admin": "Administracja",
   "sidebar_collapse": "Zwiń panel boczny",
-  "brand_tagline": "Crazy Gothic Trainer",
   "sign_in": "Zaloguj się",
   "sign_out": "Wyloguj się",
   "account_menu": "Menu konta",
@@ -32,5 +30,13 @@
   "page_admin_description": "Pomysły, plany prac, lista zmian, dokumentacja, użytkownicy i ustawienia.",
   "portal_private_title": "Ten portal jest prywatny",
   "portal_private_signed_out": "Zaloguj się, aby zobaczyć pomysły, plany prac i dokumentację.",
-  "portal_private_no_access": "Twoje konto nie ma dostępu do tego portalu. Poproś zespół o zaproszenie."
+  "portal_private_no_access": "Twoje konto nie ma dostępu do tego portalu. Poproś zespół o zaproszenie.",
+  "nav_product": "Produkt",
+  "nav_downloads": "Pobieranie",
+  "page_downloads_description": "Buildy dla Twojej gry i renderera, z instrukcją instalacji.",
+  "context_product": "Produkt",
+  "context_game": "Gra",
+  "context_renderer": "Renderer",
+  "status_planned": "Planowane",
+  "status_later": "Później"
 }

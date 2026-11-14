@@ -9,11 +9,9 @@
   "nav_ideas": "Идеи",
   "nav_roadmap": "Дорожная карта",
   "nav_changelog": "Список изменений",
-  "nav_trainer": "Трейнер",
   "nav_docs": "Документация",
   "nav_admin": "Администрирование",
   "sidebar_collapse": "Свернуть боковую панель",
-  "brand_tagline": "Crazy Gothic Trainer",
   "sign_in": "Войти",
   "sign_out": "Выйти",
   "account_menu": "Меню аккаунта",
@@ -32,5 +30,13 @@
   "page_admin_description": "Идеи, дорожные карты, список изменений, документация, пользователи и настройки.",
   "portal_private_title": "Этот портал закрытый",
   "portal_private_signed_out": "Войдите, чтобы видеть идеи, дорожные карты и документацию.",
-  "portal_private_no_access": "У вашего аккаунта нет доступа к этому порталу. Попросите команду пригласить вас."
+  "portal_private_no_access": "У вашего аккаунта нет доступа к этому порталу. Попросите команду пригласить вас.",
+  "nav_product": "Продукт",
+  "nav_downloads": "Загрузки",
+  "page_downloads_description": "Сборки для вашей игры и рендерера с инструкцией по установке.",
+  "context_product": "Продукт",
+  "context_game": "Игра",
+  "context_renderer": "Рендерер",
+  "status_planned": "Запланировано",
+  "status_later": "Позже"
 }

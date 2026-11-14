@@ -1,13 +1,15 @@
-import { BookOpen, Lightbulb, Map, ScrollText, type LucideIcon } from 'lucide-react'
+import { BookOpen, Download, Lightbulb, Map, ScrollText, type LucideIcon } from 'lucide-react'
 import { m } from '../paraglide/messages.js'
 
 export interface NavItem {
-  to: '/' | '/roadmap' | '/changelog' | '/docs'
+  to: '/' | '/roadmap' | '/changelog' | '/docs' | '/downloads'
   label: () => string
   icon: LucideIcon
 }
 export interface NavGroup {
   label: () => string
+  /** Labelled with the product picked at the bottom of the sidebar. */
+  product?: boolean
   items: NavItem[]
 }
 
@@ -22,8 +24,13 @@ export const nav: NavGroup[] = [
     ],
   },
   {
-    label: m.nav_trainer,
-    items: [{ to: '/docs', label: m.nav_docs, icon: BookOpen }],
+    // the product picked at the bottom of the sidebar (docs and downloads follow it)
+    label: m.nav_product,
+    product: true,
+    items: [
+      { to: '/docs', label: m.nav_docs, icon: BookOpen },
+      { to: '/downloads', label: m.nav_downloads, icon: Download },
+    ],
   },
 ]
 
