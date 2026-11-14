@@ -5,7 +5,6 @@
   "language": "Язык",
   "loading_page": "Загрузка страницы",
   "nav_label": "Основная навигация",
-  "nav_feedback": "Отзывы",
   "nav_ideas": "Идеи",
   "nav_roadmap": "Дорожная карта",
   "nav_changelog": "Список изменений",
@@ -31,12 +30,15 @@
   "portal_private_title": "Этот портал закрытый",
   "portal_private_signed_out": "Войдите, чтобы видеть идеи, дорожные карты и документацию.",
   "portal_private_no_access": "У вашего аккаунта нет доступа к этому порталу. Попросите команду пригласить вас.",
-  "nav_product": "Продукт",
   "nav_downloads": "Загрузки",
   "page_downloads_description": "Сборки для вашей игры и рендерера с инструкцией по установке.",
   "context_product": "Продукт",
   "context_game": "Игра",
   "context_renderer": "Рендерер",
   "status_planned": "Запланировано",
-  "status_later": "Позже"
+  "status_later": "Позже",
+  "nav_home": "Главная",
+  "page_home_description": "Всё о проектах Crazy в одном месте: идеи, дорожные карты, списки изменений, документация и загрузки. Выберите продукт, чтобы начать.",
+  "context_shared": "общее",
+  "sidebar_open": "Открыть боковую панель"
 }

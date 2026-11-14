@@ -5,7 +5,6 @@
   "language": "Language",
   "loading_page": "Loading page",
   "nav_label": "Main navigation",
-  "nav_feedback": "Feedback",
   "nav_ideas": "Ideas",
   "nav_roadmap": "Roadmap",
   "nav_changelog": "Changelog",
@@ -31,12 +30,15 @@
   "portal_private_title": "This portal is private",
   "portal_private_signed_out": "Sign in to see the ideas, roadmaps and docs.",
   "portal_private_no_access": "Your account doesn't have access to this portal. Ask the team to invite you.",
-  "nav_product": "Product",
   "nav_downloads": "Downloads",
   "page_downloads_description": "Builds for your game and renderer, with install notes.",
   "context_product": "Product",
   "context_game": "Game",
   "context_renderer": "Renderer",
   "status_planned": "Planned",
-  "status_later": "Later"
+  "status_later": "Later",
+  "nav_home": "Home",
+  "page_home_description": "Everything about the Crazy projects in one place: ideas, roadmaps, changelogs, docs and downloads. Pick a product to start.",
+  "context_shared": "shared",
+  "sidebar_open": "Open sidebar"
 }

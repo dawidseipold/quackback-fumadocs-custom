@@ -1,42 +1,22 @@
-import { BookOpen, Download, Lightbulb, Map, ScrollText, type LucideIcon } from 'lucide-react'
+import { House, type LucideIcon } from 'lucide-react'
 import { m } from '../paraglide/messages.js'
+import { PRODUCTS, type Product } from './products'
 
-export interface NavItem {
-  to: '/' | '/roadmap' | '/changelog' | '/docs' | '/downloads'
-  label: () => string
-  icon: LucideIcon
-}
-export interface NavGroup {
-  label: () => string
-  /** Labelled with the product picked at the bottom of the sidebar. */
-  product?: boolean
-  items: NavItem[]
-}
-
-/** The portal's sidebar. The order also decides the direction of page transitions. */
-export const nav: NavGroup[] = [
-  {
-    label: m.nav_feedback,
-    items: [
-      { to: '/', label: m.nav_ideas, icon: Lightbulb },
-      { to: '/roadmap', label: m.nav_roadmap, icon: Map },
-      { to: '/changelog', label: m.nav_changelog, icon: ScrollText },
-    ],
-  },
-  {
-    // the product picked at the bottom of the sidebar (docs and downloads follow it)
-    label: m.nav_product,
-    product: true,
-    items: [
-      { to: '/docs', label: m.nav_docs, icon: BookOpen },
-      { to: '/downloads', label: m.nav_downloads, icon: Download },
-    ],
-  },
+/** Rows common to the whole hub, above the product picker. */
+export const COMMON: { to: '/'; label: () => string; icon: LucideIcon }[] = [
+  { to: '/', label: m.nav_home, icon: House },
 ]
 
-const order = nav.flatMap((group) => group.items.map((item) => item.to as string))
+/** The path of a product's section. */
+export const sectionPath = (product: Product, section: string) => `/${product.slug}/${section}`
 
-/** The nav row a path belongs to (a page under /roadmap/… belongs to Roadmap). */
+/** Every nav row in sidebar order; the order also decides the direction of page transitions. */
+const order = [
+  ...COMMON.map((item) => item.to as string),
+  ...PRODUCTS.flatMap((product) => product.sections.map((s) => sectionPath(product, s.id))),
+]
+
+/** The nav row a path belongs to (a page under /trainer/docs/… belongs to Docs). */
 export function navItemOf(pathname: string): string | undefined {
   return order
     .filter((to) =>

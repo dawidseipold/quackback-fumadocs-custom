@@ -8,8 +8,16 @@
 @import '@fontsource-variable/inter';
 @import '@fontsource-variable/geist-mono';
 
+/* as in the crazy-ui docs: the page never shifts when a scrollbar appears, and an open dialog
+   doesn't add a margin for the scrollbar it hides */
 html {
   background: var(--cui-frame);
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
 }
 
 body {

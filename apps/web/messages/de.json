@@ -5,7 +5,6 @@
   "language": "Sprache",
   "loading_page": "Seite wird geladen",
   "nav_label": "Hauptnavigation",
-  "nav_feedback": "Feedback",
   "nav_ideas": "Ideen",
   "nav_roadmap": "Roadmap",
   "nav_changelog": "Änderungen",
@@ -31,12 +30,15 @@
   "portal_private_title": "Dieses Portal ist privat",
   "portal_private_signed_out": "Melde dich an, um Ideen, Roadmaps und die Doku zu sehen.",
   "portal_private_no_access": "Dein Konto hat keinen Zugang zu diesem Portal. Bitte das Team um eine Einladung.",
-  "nav_product": "Produkt",
   "nav_downloads": "Downloads",
   "page_downloads_description": "Builds für dein Spiel und deinen Renderer, mit Installationshinweisen.",
   "context_product": "Produkt",
   "context_game": "Spiel",
   "context_renderer": "Renderer",
   "status_planned": "Geplant",
-  "status_later": "Später"
+  "status_later": "Später",
+  "nav_home": "Start",
+  "page_home_description": "Alles zu den Crazy-Projekten an einem Ort: Ideen, Roadmaps, Änderungen, Doku und Downloads. Wähle ein Produkt, um loszulegen.",
+  "context_shared": "gemeinsam",
+  "sidebar_open": "Seitenleiste öffnen"
 }
