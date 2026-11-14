@@ -12,7 +12,8 @@ accounts and tester ranks for the **Crazy Gothic Trainer**. Built on **Quackback
   `legacy-patch`; the owner keeps running it locally as a test portal.
 - crazy-ui shipped (`@crazy-staff/ui` 0.2.0). `docs/kickoff.md` lists the first steps, how to use crazy-ui,
   the layout to reuse and the rules learned there.
-- Our docs (`CLAUDE.md`, `PARITY.md`, `docs/decisions.md`, `docs/kickoff.md`) sit next to Quackback's own
+- Our docs (`CLAUDE.md`, `PARITY.md`, `docs/decisions.md`, `docs/kickoff.md`, `docs/hosting.md`,
+  `docs/owner-data.md`) sit next to Quackback's own
   files in `docs/`; Quackback's `README.md` is replaced by ours.
 - The app skeleton (#3) is in place; every `PARITY.md` row has its issue (#4–#17, labels `phase: 1/2`).
   Start the next feature from its issue, in the order of the `Order:` line.
