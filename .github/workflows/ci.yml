@@ -145,6 +145,9 @@ jobs:
           SECRET_KEY=$SECRET_KEY
           BASE_URL=$BASE_URL
           EOF
+      # crazy-hub: the server entry imports the compiled Paraglide runtime, and `vite dev` would race the
+      # plugin's first compile on a fresh checkout
+      - run: bun run --cwd apps/web i18n:compile
       - name: Provision CI API key
         run: |
           api_key=$(bun apps/web/scripts/create-ci-api-key.ts)
