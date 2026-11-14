@@ -9,6 +9,9 @@ import { readFileSync } from 'fs'
 import { CLIENT_PROTECTED_SPECIFIERS } from './src/lib/server/policy/client-import-protection'
 import { routeChunksImportTheirParent } from './src/lib/build/route-chunk-parents'
 import { serverWorkers } from './src/lib/build/server-workers'
+// crazy-hub: our UI (src/app) and Paraglide; Quackback's page routes stay out of the build
+import { paraglideVitePlugin } from '@inlang/paraglide-js'
+import { routes as crazyHubRoutes } from './src/app/routes'
 
 /**
  * Replace the server-only structured logger with a no-op stub in the CLIENT
@@ -216,6 +219,14 @@ export default defineConfig(({ mode }) => {
       letNitroServeStorageAssets(),
       keepSsrOnlyDepsOutOfClientOptimizer(),
       stubServerLoggerInClient(),
+      // crazy-hub: compiles messages/*.json into src/app/paraglide (EN default + PL, DE, RU)
+      paraglideVitePlugin({
+        project: './project.inlang',
+        outdir: './src/app/paraglide',
+        outputStructure: 'message-modules',
+        emitTsDeclarations: true,
+        strategy: ['cookie', 'preferredLanguage', 'baseLocale'],
+      }),
       tailwindcss(),
       nitro({
         preset: 'bun',
@@ -235,10 +246,15 @@ export default defineConfig(({ mode }) => {
       }),
       tanstackStart({
         srcDirectory: 'src',
+        // crazy-hub: router, route tree and server entry of our UI (see src/app/routes.ts)
         router: {
-          routesDirectory: 'routes',
+          entry: 'app/router.tsx',
+          routesDirectory: 'app',
+          generatedRouteTree: 'app/routeTree.gen.ts',
+          virtualRouteConfig: crazyHubRoutes,
           routeFileIgnorePattern: '__tests__',
         },
+        server: { entry: 'app/server.ts' },
         importProtection: {
           behavior: { dev: 'error', build: 'error' },
           client: { specifiers: [...CLIENT_PROTECTED_SPECIFIERS] },
@@ -247,7 +263,7 @@ export default defineConfig(({ mode }) => {
       viteReact(),
       // A route's chunks import the chunk of the route they render under, so
       // what a layout shares with its pages stays in the layout's chunk.
-      routeChunksImportTheirParent(path.resolve(__dirname, 'src/routeTree.gen.ts')),
+      routeChunksImportTheirParent(path.resolve(__dirname, 'src/app/routeTree.gen.ts')),
     ].filter(Boolean) as PluginOption[],
   }
 })
