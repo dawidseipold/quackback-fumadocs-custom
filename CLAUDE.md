@@ -5,12 +5,12 @@ accounts and tester ranks for the **Crazy Gothic Trainer**. Built on **Quackback
 **frontend written from scratch** on **crazy-ui**. Decisions: `docs/decisions.md`. What is ported:
 `PARITY.md`.
 
-## Current state (2026-11-13)
+## Current state (2026-11-14)
 
 - This repo still holds the old approach (patches + `transform.py` over Quackback). It is **frozen**:
   no more fixes. The owner keeps running it locally as a test portal.
-- **Not started yet:** the rewrite waits until crazy-ui has its foundations (order: crazy-ui → crazy-hub →
-  trainer).
+- **The rewrite starts now:** crazy-ui shipped (`@crazy-staff/ui` 0.2.0). Start with `docs/kickoff.md` —
+  it lists the first steps, how to use crazy-ui, the layout to reuse and the rules learned there.
 - First step of the rewrite (decision 2): `main` becomes Quackback's own git history (tag v0.15.0) plus our
   commits; the patch approach moves to branch `legacy-patch`. Carry this file, `PARITY.md` and `docs/`
   over to the new `main`.
