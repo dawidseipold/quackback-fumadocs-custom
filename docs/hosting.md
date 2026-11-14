@@ -1,6 +1,7 @@
-# Hosting
+# Hosting (research notes)
 
-Decision 11 in `docs/decisions.md`. Prices checked 2026-11-14, without VAT.
+**Not decided yet** (decision 11): the hub runs locally for now. These are the options researched on
+2026-11-14 (prices without VAT) for when hosting is picked.
 
 ## Requirements
 
@@ -20,7 +21,7 @@ Decision 11 in `docs/decisions.md`. Prices checked 2026-11-14, without VAT.
 | VPS + Neon Launch (always-on)                                       | ≈ $27               | PITR, branching                                  | pg_cron needs always-on compute                              |
 | Fly.io + Managed Postgres                                           | $45+                | Managed HA                                       | No pg_cron                                                   |
 
-## The chosen setup
+## Proposed setup (default plan)
 
 ```
 Cloudflare (DNS, TLS, proxy, cache of static assets)
