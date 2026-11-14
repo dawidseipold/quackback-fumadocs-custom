@@ -1,6 +1,6 @@
 import { Avatar, Button, DropdownMenu } from '@crazy-staff/ui'
 import { Link, useRouter } from '@tanstack/react-router'
-import { LayoutDashboard, LogIn, LogOut } from 'lucide-react'
+import { LayoutDashboard, LogIn, LogOut, Settings } from 'lucide-react'
 import { signOut } from '@/lib/client/auth-client'
 import { useSessionContext, useUserRole } from '@/lib/client/hooks/use-root-context'
 import { isTeamMember } from '@/lib/shared/roles'
@@ -58,6 +58,10 @@ export function AccountMenu() {
             </DropdownMenu.Item>
           </>
         )}
+        <DropdownMenu.Separator />
+        <DropdownMenu.Item render={<Link to="/settings/profile" />}>
+          <Settings /> {m.settings_title()}
+        </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
           danger

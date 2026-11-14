@@ -16,6 +16,7 @@ import type { Role } from '@/lib/shared/roles'
 import type { WorkspaceSettings } from '@/lib/shared/types/settings'
 import appCss from './styles/app.css?url'
 import { getLocale } from './paraglide/runtime.js'
+import { Toaster } from '@crazy-staff/ui'
 import { ThemeProvider } from './components/theme-provider'
 import { Squircles } from './components/squircles'
 import { ErrorPage } from './components/error-page'
@@ -104,6 +105,7 @@ function Document({ children }: { children: ReactNode }) {
         <ThemeProvider defaultTheme={themeCookie}>
           <Squircles />
           {children}
+          <Toaster />
         </ThemeProvider>
         <Scripts />
       </body>
