@@ -30,3 +30,11 @@ Settled in the planning conversation of 2026-11-13 (owner + Claude). Supersede b
     transactional provider (Resend/Postmark), never from the VPS. Rejected: Fly.io (managed Postgres has no
     pg_cron), Supabase/Neon + VPS (~3× the cost, DB latency), Railway kept as the low-ops fallback
     (~$15–30/mo, extensions template). Details: `docs/hosting.md`.
+12. **How the hub is divided (2026-11-14, owner).** crazy-hub carries more than the trainer. The
+    **product** is the main division and part of the URL (`/trainer/ideas`, `/trainer/docs`, …); a
+    product's sections (ideas, roadmap, changelog, docs, downloads) belong to it. What is common to the
+    whole hub (start page, later news, terms, contact, GitHub) sits outside the products: common rows at
+    the top of the sidebar, links at its bottom. Each product has lower **divisions** (the trainer: game,
+    then renderer), picked under the product in the sidebar and remembered per product; each section
+    declares which divisions its content varies by (trainer: docs by game and renderer, downloads by
+    game, ideas/roadmap/changelog shared). One list in `apps/web/src/app/lib/products.ts`.
